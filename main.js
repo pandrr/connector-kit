@@ -1,0 +1,43 @@
+"use strict"
+
+var InGamepad = require("./in_gamepad").InGamepad;
+var InMQTT = require("./in_mqtt").InMQTT;
+var InOSC = require("./in_osc").InOSC;
+var OutWebSocket = require("./out_ws").OutWebSocket;
+
+// --------------------------------------
+
+var OutputManager=function()
+{
+    this._outputs=[];
+}
+
+OutputManager.prototype.add=function(o)
+{
+    this._outputs.push(o);
+}
+
+OutputManager.prototype.send=function(msg)
+{
+    console.log('[send]',msg.id,':',msg.v);
+
+    for(var i=0;i<this._outputs.length;i++)
+    {
+        this._outputs[i].send(msg);
+    }
+}
+
+// --------------------------------------
+
+const output=new OutputManager();
+const outWs=new OutWebSocket();
+outWs.start();
+output.add(outWs);
+
+
+// --------------------------------------
+
+const osc=new InOSC(output);
+const gamepad=new InGamepad(output);
+const mqtt=new InMQTT(output);
+
