@@ -5,8 +5,10 @@ var mqttServer = require('mqtt-server');
 
 var InMQTT=function(output)
 {
+
+    this.port=1883;
     this._servers=mqttServer({
-        mqtt: 'tcp://localhost:1883',
+        mqtt: 'tcp://localhost:'+this.port,
       //  mqtts: 'ssl://localhost:8883',
       //  mqttws: 'ws://localhost:1884',
       //  mqtwss: 'wss://localhost:8884'
@@ -45,8 +47,8 @@ var InMQTT=function(output)
     });
        
     this._servers.listen(function(){
-        console.log(colors.cyan("[mqtt] server started"));
-    });
+        console.log(colors.cyan("[mqtt] server started port "+this.port));
+    }.bind(this));
       
 
 

@@ -5,11 +5,14 @@ var Message = require("./message").Message;
 
 var InOSC=function(output)
 {
-    console.log(colors.cyan("starting input osc"));
+
+    this.port=9000;
+
+    console.log(colors.cyan("starting input osc on port "+this.port));
 
     this._udpPort = new osc.UDPPort({
         localAddress: internalIp.v4.sync(),//"192.168.1.169",
-        localPort: 9000,
+        localPort: this.port,
         metadata: true
     });
     
