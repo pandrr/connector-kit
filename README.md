@@ -10,10 +10,16 @@ it listens to:
 - mqtt on port 1883
 - connected gamepads
 
-messages look like this:
+websocket messages look like this:
 ```
 {
   id:"service/someUniqueId/",
   v:0.5435
 }
 ```
+
+
+todos:
+- more inputs
+- more outputs
+- some kind of configuration for ports/services etc...
