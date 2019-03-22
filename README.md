@@ -10,10 +10,10 @@ it listens to:
 - mqtt on port 1883
 - connected gamepads
 
-websocket messages look like this:
+websocket messages look for example like this:
 ```
 {
-  id:"service/someUniqueId/",
+  id:"service/xboxcontroller/button16",
   v:0.5435
 }
 ```
