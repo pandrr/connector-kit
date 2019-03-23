@@ -19,6 +19,18 @@ var InGamepad=function(output)
         output.send(new Message('gamepad/'+id+'/button/'+num,'f',0));
     });
 
+    gamepad.on("move", function (id, axis, value) {
+
+        output.send(new Message('gamepad/'+id+'/axis/'+axis,'f',value));
+        
+        // console.log("move", {
+        //   id: id,
+        //   axis: axis,
+        //   value: value,
+        // });
+      });
+
+      
     setInterval(gamepad.processEvents, 16);
 }
 
