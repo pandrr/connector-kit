@@ -4,6 +4,7 @@ var InGamepad = require("./in_gamepad").InGamepad;
 var InMQTT = require("./in_mqtt").InMQTT;
 var InOSC = require("./in_osc").InOSC;
 var InWS = require("./in_ws").InWS;
+var OutArtNet = require("./out_artnet").OutArtNet;
 var OutWebSocket = require("./out_ws").OutWebSocket;
 const internalIp = require('internal-ip');
 var colors = require('colors/safe');
@@ -39,6 +40,10 @@ const output=new OutputManager();
 const outWs=new OutWebSocket();
 outWs.start();
 output.add(outWs);
+
+const outArtnet=new OutArtNet();
+outArtnet.start();
+output.add(outArtnet);
 
 
 // --------------------------------------
