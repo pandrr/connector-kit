@@ -3,6 +3,7 @@
 var InGamepad = require("./in_gamepad").InGamepad;
 var InMQTT = require("./in_mqtt").InMQTT;
 var InOSC = require("./in_osc").InOSC;
+var InWS = require("./in_ws").InWS;
 var OutWebSocket = require("./out_ws").OutWebSocket;
 const internalIp = require('internal-ip');
 var colors = require('colors/safe');
@@ -43,6 +44,7 @@ output.add(outWs);
 // --------------------------------------
 
 const osc=new InOSC(output);
+const ws=new InWS(output);
 const mqtt=new InMQTT(output);
 const gamepad=new InGamepad(output);
 
