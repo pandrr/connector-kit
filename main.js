@@ -24,7 +24,7 @@ OutputManager.prototype.add=function(o)
 
 OutputManager.prototype.send=function(msg)
 {
-    console.log('[send]',msg.id,':',msg.v);
+    // console.log('[send]',msg.id,':',typeof msg.v);
 
     for(var i=0;i<this._outputs.length;i++)
     {
@@ -34,7 +34,7 @@ OutputManager.prototype.send=function(msg)
 
 // --------------------------------------
 
-console.log(colors.underline.cyan("local ip:",internalIp.v4.sync()));
+console.log(colors.underline.cyan("local ip:",''+internalIp.v4.sync()));
 
 const output=new OutputManager();
 const outWs=new OutWebSocket();

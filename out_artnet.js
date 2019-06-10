@@ -6,7 +6,7 @@ var OutArtNet=function()
 {
     this.artnet=null;
     this.options = {
-        host: '172.16.23.15'
+        host: '192.168.0.98'
 
         // host (Default "255.255.255.255")
         // port (Default 6454)
@@ -21,20 +21,60 @@ OutArtNet.prototype.start=function()
     console.log(colors.cyan('starting artnet send to '+this.options.host));
 
     this.artnet = ArtNet(this.options);
+
+    // 1 strip pro universum 170 leds 510 channels
+
+    var data=[];
+
+    for(var i=0;i<170;i++)
+    {
+        data[i*3+0]=0;
+        data[i*3+1]=0;
+        data[i*3+2]=0;
+    }
+
+    this.artnet.set( 0,0, data,function()
+    {
+        console.log('artnet msg send!');
+    });
+
+    this.artnet.set( 1,0, data,function()
+    {
+        console.log('artnet msg send!');
+    });
+
+
+
+
 }
+
 
 OutArtNet.prototype.send=function(msg)
 {
     // var str=JSON.stringify(msg);
     // console.log('artnet!!!',msg.v);
 
-    var uniChan=msg.id.split(",");
+    // var uniChan=msg.id.split(",");
     var v=msg.v;
 
-    this.artnet.set( parseInt(uniChan[0]),parseInt(uniChan[1]), v,function()
+    try
     {
-        console.log('artnet msg send!');
-    });
+        if(v)
+        {
+    
+            this.artnet.set( parseInt(msg.id),0, v,function()
+            {
+                // console.log('artnet msg send!',msg.id);
+            });
+        
+        }
+    
+    }
+    catch(e)
+    {
+
+    }
+
     // for(var i=0;i<this._clients.length;i++)
     // {
     //     if (this._clients[i].readyState !== WebSocket.OPEN) { 
