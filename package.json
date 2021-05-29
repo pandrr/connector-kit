@@ -11,7 +11,7 @@
     "internal-ip": "^4.2.0",
     "mqtt-server": "^0.1.0",
     "osc": "^2.2.4",
-    "ws": "^6.1.0"
+    "ws": "^7.4.6"
   },
   "devDependencies": {},
   "scripts": {
